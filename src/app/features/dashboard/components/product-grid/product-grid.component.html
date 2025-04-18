@@ -1,0 +1,31 @@
+<p-table
+  [value]="products"
+  [paginator]="true"
+  [rows]="5"
+  [responsiveLayout]="'scroll'"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [style]="{ width: '100%' }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>#</th>
+      <th>نام کالا</th>
+      <th>قیمت</th>
+      <th>تاریخ ثبت</th>
+      <th>عملیات</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-product let-i="rowIndex">
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price | number: '1.0-0' }} تومان</td>
+      <td>{{ product.date | shamsiDate }}</td>
+      <td>
+        <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="onEdit(product)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-text p-button-sm p-button-danger" (click)="onDelete(product)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

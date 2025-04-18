@@ -32,6 +32,9 @@
               }
             ],
             "styles": [
+              "node_modules/@primeuix/styled/themes/lara-light-blue/theme.css",
+              "node_modules/@primeuix/styled/primeng.css",
+              "node_modules/primeicons/primeicons.css",
               "src/styles.scss"
             ],
             "scripts": []
