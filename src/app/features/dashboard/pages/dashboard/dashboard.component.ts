@@ -1,23 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { HeaderComponent } from '../../../../shared/components/header/header.component';
 import { NewProductButtonComponent } from '../../components/new-product-button/new-product-button.component';
-import { DialogModule } from 'primeng/dialog';
-import { FormsModule } from '@angular/forms';
+import { AddProductModalComponent } from '../../components/add-product-modal/add-product-modal.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ProductGridComponent, HeaderComponent, NewProductButtonComponent, DialogModule, FormsModule],
+  imports: [CommonModule, ProductGridComponent, HeaderComponent, NewProductButtonComponent, AddProductModalComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild(AddProductModalComponent) addProductModal!: AddProductModalComponent;
+
   products: any[] = [];
-  addModalVisible = false;
-  newProduct: any = { name: '', price: 0, date: '' };
   newProductCount = 0;
 
   constructor(private http: HttpClient) {}
@@ -29,28 +28,14 @@ export class DashboardComponent implements OnInit {
         date: new Date(product.date).toISOString(),
       }));
     });
-    this.http.get<any[]>('assets/data/products.json').subscribe((data) => {
-      this.products = data;
-    });
   }
 
   openAddModal(): void {
-    this.newProduct = { name: '', price: 0, date: '' };
-    this.addModalVisible = true;
+    this.addProductModal.open();
   }
 
-  addProduct(): void {
-    const newProduct = {
-      ...this.newProduct,
-      id: this.products.length + 1,
-      date: new Date().toISOString(),
-    };
-    this.products = [...this.products, newProduct];
+  handleProductAdded(product: any): void {
+    this.products = [...this.products, product];
     this.newProductCount++;
-    this.closeAddModal();
-  }
-
-  closeAddModal(): void {
-    this.addModalVisible = false;
   }
 }

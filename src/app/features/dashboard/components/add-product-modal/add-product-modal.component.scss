@@ -1,0 +1,76 @@
+:host {
+    display: block;
+  }
+  
+  button.btn-success {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5px;
+  
+    &:hover {
+      background-color: #218838;
+    }
+  }
+  
+  button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #c82333;
+    }
+  }
+  
+  :host ::ng-deep .p-dialog {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  :host ::ng-deep .p-dialog-header {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  :host ::ng-deep .p-dialog-content {
+    padding: 20px;
+  }
+  
+  :host ::ng-deep .p-dialog-mask {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  :host ::ng-deep .p-dialog {
+    z-index: 1050;
+  }
+  
+  :host ::ng-deep .p-dialog-mask {
+    z-index: 1040;
+  }
+  
+  :host .p-dialog-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  :host .p-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  :host .p-field label {
+    margin-bottom: 5px;
+  }
+  
+  :host .p-field input {
+    width: 100%;
+    box-sizing: border-box;
+  }

@@ -29,6 +29,10 @@ export class ProductGridComponent {
       message: `آیا از حذف "${product.name}" اطمینان دارید؟`,
       header: 'تأیید حذف',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'بله',
+      rejectLabel: 'خیر',
+      acceptButtonStyleClass: 'btn btn-success', 
+      rejectButtonStyleClass: 'btn btn-danger', 
       accept: () => {
         this.deleteProduct(product);
       },
