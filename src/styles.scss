@@ -1,1 +1,31 @@
-@import '@angular/cdk/overlay-prebuilt.css';
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: "Vazirmatn", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+table {
+  direction: rtl;
+  text-align: right;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: right;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+input,
+button {
+  font-family: "Vazirmatn", Arial, sans-serif;
+}

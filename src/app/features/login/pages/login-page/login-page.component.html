@@ -1,21 +1,33 @@
 <div class="login-container">
-  <h2>ورود</h2>
-  <form (ngSubmit)="onLogin()">
-    <div>
+  <h2>ورود به سیستم</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <div class="form-group">
       <label for="username">نام کاربری:</label>
-      <input id="username" [(ngModel)]="username" name="username" required />
+      <input
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        class="form-control"
+        placeholder="نام کاربری خود را وارد کنید"
+      />
     </div>
-    <div>
+    <div class="form-group">
       <label for="password">رمز عبور:</label>
       <input
         id="password"
+        name="password"
         type="password"
         [(ngModel)]="password"
-        name="password"
         required
+        class="form-control"
+        placeholder="رمز عبور خود را وارد کنید"
       />
     </div>
-    <button type="submit">ورود</button>
+    <button type="submit" [disabled]="!loginForm.valid || isLoading" class="btn btn-primary">
+      <span *ngIf="isLoading">در حال ورود...</span>
+      <span *ngIf="!isLoading">ورود</span>
+    </button>
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </form>
 </div>

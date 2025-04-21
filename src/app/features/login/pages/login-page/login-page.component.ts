@@ -15,17 +15,32 @@ export class LoginPageComponent {
   username = '';
   password = '';
   errorMessage = '';
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(): void {
-    this.authService.login(this.username, this.password).subscribe((success) => {
-      if (success) {
-        this.errorMessage = '';
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.errorMessage = 'نام کاربری یا رمز عبور اشتباه است.';
-      }
+    if (!this.username || !this.password) {
+      this.errorMessage = 'لطفاً نام کاربری و رمز عبور را وارد کنید.';
+      return;
+    }
+
+    this.isLoading = true;
+    this.authService.login(this.username, this.password).subscribe({
+      next: (success) => {
+        this.isLoading = false;
+        if (success) {
+          this.errorMessage = '';
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.errorMessage = 'نام کاربری یا رمز عبور اشتباه است.';
+        }
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = 'خطایی در سرور رخ داده است. لطفاً دوباره تلاش کنید.';
+        console.error(err);
+      },
     });
   }
 }

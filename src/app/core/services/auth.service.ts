@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,10 @@ export class AuthService {
           return true;
         }
         return false;
+      }),
+      catchError((error) => {
+        console.error('Error during login:', error);
+        return of(false); 
       })
     );
   }
