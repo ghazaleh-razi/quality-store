@@ -1,6 +1,6 @@
 <div class="dashboard-container">
   <app-header [notificationCount]="newProductCount"></app-header>
-  <button class="btn btn-success" (click)="openAddModal()">جدید</button>
+  <app-new-product-button (clickEvent)="openAddModal()"></app-new-product-button>
   <app-product-grid [products]="products"></app-product-grid>
 
   <p-dialog [(visible)]="addModalVisible" [header]="'افزودن کالا'" [modal]="true" [closable]="false" [style]="{ width: '400px' }">
