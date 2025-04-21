@@ -1,4 +1,24 @@
 <div class="dashboard-container">
   <h2>داشبورد</h2>
+  <button class="btn btn-success" (click)="openAddModal()">جدید</button>
   <app-product-grid [products]="products"></app-product-grid>
+
+  <p-dialog [(visible)]="addModalVisible" [header]="'افزودن کالا'" [modal]="true" [closable]="false" [style]="{ width: '400px' }">
+    <form (ngSubmit)="addProduct()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="name">نام کالا</label>
+          <input id="name" type="text" pInputText [(ngModel)]="newProduct.name" name="name" required />
+        </div>
+        <div class="p-field">
+          <label for="price">قیمت</label>
+          <input id="price" type="number" pInputText [(ngModel)]="newProduct.price" name="price" required />
+        </div>
+      </div>
+      <div class="p-dialog-footer">
+        <button type="submit" class="btn btn-primary">ذخیره</button>
+        <button type="button" class="btn btn-secondary" (click)="closeAddModal()">لغو</button>
+      </div>
+    </form>
+  </p-dialog>
 </div>
