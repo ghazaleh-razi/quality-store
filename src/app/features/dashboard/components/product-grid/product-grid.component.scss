@@ -1,20 +1,26 @@
 :host {
-    display: block;
-    margin: 20px 0;
-  }
-  
-  .p-datatable {
-    text-align: right;
-  }
-  
-  .p-datatable th {
-    text-align: right;
-  }
-  
-  .p-datatable td {
-    text-align: right;
-  }
-  
-  button {
-    margin: 0 5px;
-  }
+  display: block;
+  margin: 20px 0;
+}
+
+.p-datatable {
+  font-family: "Vazirmatn", Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.p-datatable th {
+  text-align: right;
+}
+
+.p-datatable td {
+  text-align: right;
+}
+
+button {
+  margin: 0 5px;
+}
+
+button i {
+  margin-left: 5px;
+}

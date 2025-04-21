@@ -22,9 +22,12 @@
       <td>{{ product.price | currency:'IRR':'symbol':'1.0-0' }}</td>
       <td>{{ product.date | shamsiDate }}</td>
       <td>
-        <button class="btn btn-primary">ویرایش</button>
-        <button class="btn btn-danger">حذف</button>
+        <button class="btn btn-danger" (click)="confirmDelete(product)">
+          <i class="pi pi-trash"></i>
+        </button>
       </td>
     </tr>
   </ng-template>
 </p-table>
+
+<p-confirmDialog></p-confirmDialog>
