@@ -22,6 +22,9 @@
       <td>{{ product.price | currency:'IRR':'symbol':'1.0-0' }}</td>
       <td>{{ product.date | shamsiDate }}</td>
       <td>
+        <button class="btn btn-primary" (click)="openEditModal(product)">
+          <i class="pi pi-pencil"></i>
+        </button>
         <button class="btn btn-danger" (click)="confirmDelete(product)">
           <i class="pi pi-trash"></i>
         </button>
@@ -31,3 +34,26 @@
 </p-table>
 
 <p-confirmDialog></p-confirmDialog>
+
+<p-dialog [(visible)]="editModalVisible" [header]="'ویرایش کالا'" [modal]="true" [closable]="false" [style]="{ width: '400px' }">
+  <form (ngSubmit)="saveProduct()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">نام کالا</label>
+        <input id="name" type="text" pInputText [(ngModel)]="selectedProduct.name" name="name" required />
+      </div>
+      <div class="p-field">
+        <label for="price">قیمت</label>
+        <input id="price" type="number" pInputText [(ngModel)]="selectedProduct.price" name="price" required />
+      </div>
+      <div class="p-field">
+        <label for="date">تاریخ</label>
+        <input id="date" type="date" pInputText [(ngModel)]="selectedProduct.date" name="date" required />
+      </div>
+    </div>
+    <div class="p-dialog-footer">
+      <button type="submit" class="btn btn-primary">ذخیره</button>
+      <button type="button" class="btn btn-secondary" (click)="closeEditModal()">لغو</button>
+    </div>
+  </form>
+</p-dialog>

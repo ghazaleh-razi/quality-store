@@ -24,3 +24,9 @@ button {
 button i {
   margin-left: 5px;
 }
+
+.p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
