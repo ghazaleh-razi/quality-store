@@ -1,36 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { SharedModule } from '../../../../shared/shared.module';
-import { DecimalPipe } from '@angular/common';
+import { ShamsiDatePipe } from "../../../../shared/pipes/shamsi-date.pipe";
 
 @Component({
   selector: 'app-product-grid',
   standalone: true,
-  imports: [TableModule, ButtonModule, SharedModule, DecimalPipe],
-  templateUrl: './product-grid.component.html'
+  imports: [CommonModule, TableModule, ShamsiDatePipe],
+  templateUrl: './product-grid.component.html',
+  styleUrls: ['./product-grid.component.scss'],
 })
 export class ProductGridComponent {
-  products = [
-    {
-      id: 1,
-      name: 'کالای اول',
-      price: 120000,
-      date: '2024-04-17T12:00:00Z',
-    },
-    {
-      id: 2,
-      name: 'کالای دوم',
-      price: 98000,
-      date: '2024-04-16T10:00:00Z',
-    },
-  ];
+  @Input() products: any[] = []; 
 
-  onEdit(product: any) {
-    console.log('Edit: ', product);
-  }
-
-  onDelete(product: any) {
-    console.log('Delete: ', product);
-  }
+  rowsPerPageOptions = [5, 10, 20]; 
 }
