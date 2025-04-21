@@ -29,6 +29,9 @@ export class DashboardComponent implements OnInit {
         date: new Date(product.date).toISOString(),
       }));
     });
+    this.http.get<any[]>('assets/data/products.json').subscribe((data) => {
+      this.products = data;
+    });
   }
 
   openAddModal(): void {

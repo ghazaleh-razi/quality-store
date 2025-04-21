@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { User } from '../../models/user.model';
-import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private usersUrl = 'assets/data/users.json';
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -21,23 +23,26 @@ export class AuthService {
         );
         if (user) {
           localStorage.setItem('isAuthenticated', 'true');
+          this.isAuthenticatedSubject.next(this.isLoggedIn()); 
           return true;
         }
         return false;
       }),
       catchError((error) => {
-        console.error('Error during login:', error);
-        return of(false); 
+        console.error('AuthService - Error during login:', error);
+        return of(false);
       })
     );
   }
-
+  
   logout(): void {
     localStorage.removeItem('isAuthenticated');
+    this.isAuthenticatedSubject.next(this.isLoggedIn()); 
     this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('isAuthenticated') === 'true';
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    return isAuthenticated;
   }
 }

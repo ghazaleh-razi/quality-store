@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,11 @@ export class LoginPageComponent {
   errorMessage = '';
   isLoading = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   onLogin(): void {
     if (!this.username || !this.password) {
@@ -31,7 +35,9 @@ export class LoginPageComponent {
         this.isLoading = false;
         if (success) {
           this.errorMessage = '';
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']).then(() => {
+            this.cdr.detectChanges();
+          });
         } else {
           this.errorMessage = 'نام کاربری یا رمز عبور اشتباه است.';
         }

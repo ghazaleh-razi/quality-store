@@ -3,13 +3,13 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { appRoutes } from './app/app.routes';
-import { LoginPageComponent } from './app/features/login/pages/login-page/login-page.component';
+import { AppComponent } from './app/app.component'; // تغییر به AppComponent
 import { environment } from './environment/environment.prod';
 
 if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(LoginPageComponent, {
+bootstrapApplication(AppComponent, {
   providers: [provideRouter(appRoutes), provideHttpClient()],
 }).catch((err) => console.error(err));
